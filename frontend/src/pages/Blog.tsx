@@ -5,7 +5,6 @@ import AppBar from "../components/AppBar";
 import Skeleton from "../components/Skeleton";
 import { IBlog } from "../models/IBlog";
 import Avatar from "../components/Avatar";
-import { getContent } from "../common/functions";
 
 const Blog = () => {
   const { id } = useParams();
@@ -60,9 +59,10 @@ const Blog = () => {
         <div className="flex items-center justify-between px-3 max-w-screen-lg gap-x-10">
           <div className="flex flex-col gap-2">
             <div className="text-4xl font-extrabold">{blogDetails?.title}</div>
-            <div className="text-xl ">
-              {getContent(blogDetails?.content ?? "")}
-            </div>
+            <div
+              className="text-xl "
+              dangerouslySetInnerHTML={{ __html: blogDetails?.content ?? "" }}
+            />
           </div>
           <div className="flex flex-col items-start gap-2">
             <div className="font-light">Author</div>

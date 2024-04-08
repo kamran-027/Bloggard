@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import Avatar from "./Avatar";
-import { getContent } from "../common/functions";
 
 interface IBlogCardProps {
   Name: string | null;
@@ -33,7 +32,11 @@ const BlogCard = ({
           </div>
         </div>
         <div className="font-extrabold text-lg">{Title}</div>
-        <div className="text-sm">{getContent(Content)}</div>
+        <div
+          className="text-sm"
+          dangerouslySetInnerHTML={{ __html: Content }}
+        />
+
         <div className="font-thin text-sm pt-2">
           {Math.ceil(Content.length / 100)} minute(s) read
         </div>
