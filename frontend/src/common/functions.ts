@@ -1,4 +1,4 @@
-import parser from "react-html-parser";
+import parser from "html-react-parser";
 
 export const getContent = (html: string) => {
   return parser(html);
