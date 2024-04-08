@@ -3,9 +3,8 @@ import AppBar from "../components/AppBar";
 import axios from "axios";
 import { API_URL } from "../config";
 import { useNavigate } from "react-router-dom";
-import ReactQuill, { UnprivilegedEditor } from "react-quill";
+import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { DeltaStatic, Sources } from "quill";
 import Skeleton from "../components/Skeleton";
 
 const AddBlog = () => {
@@ -37,12 +36,7 @@ const AddBlog = () => {
     setDesc("");
   };
 
-  const handleTextChange = (
-    value: string,
-    delta: DeltaStatic,
-    source: Sources,
-    editor: UnprivilegedEditor
-  ) => {
+  const handleTextChange = (value: string) => {
     setDesc(value);
   };
 
