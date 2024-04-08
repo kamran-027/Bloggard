@@ -21,7 +21,7 @@ const SignIn = () => {
     );
     setIsLoading(false);
     const token = resp.data.token;
-    localStorage.setItem("token", token);
+    sessionStorage.setItem("token", token);
     navigate("/blog/2");
     setSignInDetails({ email: "", password: "" });
   };

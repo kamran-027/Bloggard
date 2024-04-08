@@ -24,8 +24,8 @@ const SignUp = () => {
       );
       setIsLoading(true);
       const token = resp.data.token;
-      localStorage.setItem("token", token);
-      navigate("/blog/2");
+      sessionStorage.setItem("token", token);
+      navigate("/blogs");
       setSignUpDetails({
         email: "",
         name: "",

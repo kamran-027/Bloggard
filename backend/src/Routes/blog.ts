@@ -49,13 +49,11 @@ blogRouter.post("/blog", async (c) => {
       },
     });
     c.status(200);
-    return c.json({
-      message: `Post added successfully with ID as ${newBlog.id}`,
-    });
+    return c.text(newBlog.id);
   } catch (error) {
-    c.status(200);
+    c.status(404);
     return c.json({
-      message: "Post added successfully",
+      error: error,
     });
   }
 });
@@ -95,7 +93,19 @@ blogRouter.put("/blog", async (c) => {
 blogRouter.get("/blog/bulk", async (c) => {
   const prisma = getPrismaClient(c);
   try {
-    const posts = await prisma.post.findMany();
+    const posts = await prisma.post.findMany({
+      select: {
+        title: true,
+        content: true,
+        id: true,
+        publishedDate: true,
+        author: {
+          select: {
+            name: true,
+          },
+        },
+      },
+    });
     return c.json({
       blogs: posts,
     });
@@ -112,7 +122,20 @@ blogRouter.get("/blog/:id", async (c) => {
 
   const prisma = getPrismaClient(c);
   try {
-    const blog = await prisma.post.findUnique({ where: { id: blogId } });
+    const blog = await prisma.post.findUnique({
+      where: { id: blogId },
+      select: {
+        title: true,
+        content: true,
+        id: true,
+        publishedDate: true,
+        author: {
+          select: {
+            name: true,
+          },
+        },
+      },
+    });
 
     return c.json(blog);
   } catch (error) {
