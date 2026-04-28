@@ -10,4 +10,8 @@ app.use("/*", cors());
 app.route("/api/v1/user", userRouter);
 app.route("/api/v1/blogs", blogRouter);
 
+app.route("/sample", (c) => {
+  return c.text("Hello World");
+});
+
 export default app;
